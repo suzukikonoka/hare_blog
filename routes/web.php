@@ -28,11 +28,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('Posts',PostController::class)
+Route::resource('posts',PostController::class)
     ->only(['create','store','edit','update','destroy'])
     ->middleware('auth');
 
-Route::resource('Posts',PostController::class)
+Route::resource('posts',PostController::class)
     ->only(['index','show']);
 
 
