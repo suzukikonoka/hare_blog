@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\facades\Storage;
 
 class Post extends Model
 {
@@ -18,4 +19,11 @@ class Post extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function getImage_UrlAttribute() 
+    {
+        return Storage::url('images/posts/' . $this->image);
+    }
 }
+
+
