@@ -18,8 +18,8 @@
         </article>
         <div class="flex flex-row text-center my-4">
             @can('update', $post)
-            <a href="{{ route('posts.edit', $post) }}"
-                class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-20 mr-2">編集</a>
+                <a href="{{ route('posts.edit', $post) }}"
+                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-20 mr-2">編集</a>
             @endcan
             @can('delete', $post)
                 <form action="{{ route('posts.destroy', $post) }}" method="post">
@@ -30,7 +30,6 @@
                 </form>
             @endcan
         </div>
-
         @auth
             <hr class="my-4">
 
@@ -40,5 +39,15 @@
             </div>
         @endauth
 
+        <section class="font-sans break-normal text-gray-900 ">
+            @foreach ($comments as $comment)
+                <div class="my-2">
+                    <span class="font-bold mr-3">{{ $comment->user->name }}</span>
+                    <span class="text-sm">{{ $comment->created_at }}</span>
+                    <p class="break-all">{!! nl2br(e($comment->body)) !!}</p>
+                </div>
+                <hr>
+            @endforeach
+        </section>
     </div>
 </x-app-layout>

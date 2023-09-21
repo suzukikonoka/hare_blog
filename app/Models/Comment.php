@@ -13,12 +13,12 @@ class Comment extends Model
         'body',
     ];
 
-    public function user()
+    public function User()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function post()
+    public function Post()
     {
         return $this->belongsTo(Post::class);
     }
