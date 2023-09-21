@@ -17,10 +17,10 @@
             <p class="text-gray-700 text-base">{!! nl2br(e($post->body)) !!}</p>
         </article>
         <div class="flex flex-row text-center my-4">
-            {{-- @can('update', $post) --}}
+            @can('update', $post)
             <a href="{{ route('posts.edit', $post) }}"
                 class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-20 mr-2">編集</a>
-            {{-- @endcan --}}
+            @endcan
             @can('delete', $post)
                 <form action="{{ route('posts.destroy', $post) }}" method="post">
                     @csrf
@@ -30,5 +30,15 @@
                 </form>
             @endcan
         </div>
+
+        @auth
+            <hr class="my-4">
+
+            <div class="flex justify-end">
+                <a href="{{ route('posts.comments.create', $post) }}"
+                    class="bg-indigo-400 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline block">コメント登録</a>
+            </div>
+        @endauth
+
     </div>
 </x-app-layout>
